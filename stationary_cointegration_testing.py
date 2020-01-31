@@ -68,6 +68,8 @@ plt.xlabel('Time')
 plt.ylabel('Series Value')
 plt.legend([z.name])
 stationary_check(z)
+score, pvalue, _ = coint(sr1, sr2)
+print('Cointegration test p-value: ' + str(pvalue))
 plt.show()
 
 
