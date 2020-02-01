@@ -7,6 +7,25 @@ from statsmodels.tsa.stattools import coint, adfuller
 
 import matplotlib.pyplot as plt
 
+import pathlib as pl
+
+
+def get_all_paths(folder=None, type='csv', parent_folder=0):
+
+    cwd = pl.Path.cwd()
+    for i in range(parent_folder):
+        cwd = cwd.parent
+
+    if folder == None:
+        full_path = cwd.joinpath('pairs-data')
+    else:
+        full_path = cwd.joinpath('pairs-data', folder)
+
+    type = '*.' + type
+    inputFiles = pl.Path(full_path).rglob(type)
+
+    return inputFiles
+
 
 # Load csv data into DataFrame, set column one as index
 def data_loader(csv_file):
